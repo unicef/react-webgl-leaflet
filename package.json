@@ -16,6 +16,7 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch",
     "build": "webpack"
