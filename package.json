@@ -1,11 +1,8 @@
 {
   "name": "react-webgl-leaflet",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Put a description here",
   "main": "build/index.js",
-  "peerDependencies": {
-    "react": "^15.5.4"
-  },
   "dependencies": {
     "axios": "^0.17.1",
     "colors": "^1.1.2",
