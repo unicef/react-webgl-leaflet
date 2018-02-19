@@ -3,6 +3,9 @@
   "version": "0.0.5",
   "description": "Put a description here",
   "main": "build/index.js",
+  "peerDependencies": {
+    "react": "^16.2.0"
+  },
   "dependencies": {
     "axios": "^0.17.1",
     "colors": "^1.1.2",
