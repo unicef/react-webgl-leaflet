@@ -462,7 +462,7 @@ class ReactWebglLeaflet extends React.Component {
       return new L.CanvasLayer();
     };
 
-    const leafletMap = this.props.leafletMap.leafletMap.leafletElement;
+    const leafletMap = this.props.leafletMap.leafletElement;
     const fetchUrl = this.props.fetchUrl
     var glLayer = L.canvasLayer().delegate(this).addTo(leafletMap);
     var canvas = glLayer._canvas
