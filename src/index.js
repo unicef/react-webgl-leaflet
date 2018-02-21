@@ -75,8 +75,6 @@ const prepare_points = function(features, zoom) {
   features.forEach((f, i) => {
 
     var speed_value = f.properties.color
-    console.log('bbbbb')
-
     const lat = f.geometry.coordinates[1];
     const lon = f.geometry.coordinates[0];
     const id = f.properties.id;
