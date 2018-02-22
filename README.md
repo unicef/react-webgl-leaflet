@@ -11,16 +11,16 @@ Will fill this out in depth shortly. In brief, the ReactWebglLeaflet component t
             this.leafletMap = m;
           }
           }
-          center={position}
-          zoom={this.state.zoom}
+          center={some_lat_lon}
+          zoom = 8
           zoomControl={false}>
           <ZoomControl position='bottomleft' />
           <TileLayer
-            url={this.state.url}
-            attribution={this.state.attribution}
+            url={url_to_some_mapbox_or_osm_map_thing}
+            attribution={i_dont_remember_what_this_is}
           />
         <ReactWebglLeaflet leafletMap={this.leafletMap}
-            points={this.props.activeCountry.points}
+            points={geojson}
             fetchUrl={fetch_url}
             />
         </Map>
