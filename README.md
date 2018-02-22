@@ -1,6 +1,6 @@
 # react-webgl-leaflet
 
-Will fill this out in depth shortly. In Brief, the ReactWebglLeaflet component takes three inputs:
+Will fill this out in depth shortly. In brief, the ReactWebglLeaflet component takes three inputs:
 
 - A reference to the map it's embedded in
 - A geojson object with an array of features of type point.
