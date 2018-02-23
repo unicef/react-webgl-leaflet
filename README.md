@@ -24,5 +24,6 @@ Will fill this out in depth shortly. In brief, the ReactWebglLeaflet component t
             fetchUrl={fetch_url}
             />
         </Map>
-
 [Demo](http://school-mapping.azurewebsites.net)
+![sample](./webgl-clickable-points.jpeg)
+
