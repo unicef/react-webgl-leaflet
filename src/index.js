@@ -1,17 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react';
-
-
 import L from 'leaflet'
-import {
-  pointToLayer
-} from './helpers/helper-point-to-layer';
 
 Number.prototype.map = function(in_min, in_max, out_min, out_max) {
   return (((this - in_min) * (out_max - out_min)) / (in_max - in_min)) + out_min;
 };
 // Function to convert rgb to 0-1 for webgl
 const fromRgb = n => Math.ceil((parseInt(n).map(0, 255, 0, 1)) * 1000) / 1000;
+
 /*
  * decaffeinate suggestions:
  * DS101: Remove unnecessary use of Array.from
@@ -77,7 +73,7 @@ const prepare_points = function(features, zoom) {
     var speed_value = f.properties.color
     const lat = f.geometry.coordinates[1];
     const lon = f.geometry.coordinates[0];
-    const id = f.properties.id;
+    // const id = f.properties.id;
 
     const pixel = LatLongToPixelXY(lat, lon);
     point_xy[i * 2] = pixel.x;
@@ -88,7 +84,7 @@ const prepare_points = function(features, zoom) {
     // }
     // i + 1
     const [r, g, b] = Array.from(gen_offscreen_colors(i));
-    colorLookup[r + ' ' + g + ' ' + b] = id;
+    colorLookup[r + ' ' + g + ' ' + b] = f;
 
     // off screen point colors (each color unique)
     point_off_screen_color[i * 4] = fromRgb(r);
@@ -275,7 +271,7 @@ class ReactWebglLeaflet extends React.Component {
       value: 3,
       didUpdate: false,
       loading: false,
-      onHover: false
+      onHover: false,
     }
   }
   /**
@@ -290,6 +286,7 @@ class ReactWebglLeaflet extends React.Component {
   }
 
   componentDidMount() {
+    let props = this.props
     /*
       Generic  Canvas Layer for leaflet 0.7 and 1.0-rc,
       copyright Stanislav Sumbera,  2016 , sumbera.com , license MIT
@@ -475,7 +472,7 @@ class ReactWebglLeaflet extends React.Component {
     this.state.colorArrayBufferOffScreen = gl.createBuffer()
     this.state.framebuffer = framebuffer
     canvas.addEventListener('click', function(ev) {
-      if (!!this.style.cssText) {
+      if (this.style.cssText) {
         let x = undefined;
         let y = undefined;
         let top = 0;
@@ -497,13 +494,13 @@ class ReactWebglLeaflet extends React.Component {
 
         if (colorLookup[pixels[0] + " " + pixels[1] + " " + pixels[2]]) {
           this.style.cursor = 'pointer'
-          pointToLayer(colorLookup[pixels[0] + " " + pixels[1] + " " + pixels[2]], leafletMap, fetchUrl)
+          props.onClickCallback(colorLookup[pixels[0] + ' ' + pixels[1] + ' ' + pixels[2]], leafletMap)
 
         }
       }
     });
     canvas.addEventListener('mousemove', function(ev) {
-      if (!!this.style.cssText) {
+      if (this.style.cssText) {
         let x = undefined;
         let y = undefined;
         let top = 0;
@@ -525,14 +522,8 @@ class ReactWebglLeaflet extends React.Component {
         // const d = document.getElementById('infoWindow');
         if (colorLookup[pixels[0] + " " + pixels[1] + " " + pixels[2]]) {
           this.style.cursor = 'pointer'
-          console.log(colorLookup[pixels[0] + " " + pixels[1] + " " + pixels[2]]);
-          // d.style.display = "inline";
-          // d.style.left    = ev.x + 20 + 'px';
-          // d.style.top     = (ev.y - 25) + 'px';
-          // return d.innerHTML     = 'School ID: ' + colorLookup[pixels[0] + " " + pixels[1] + " " + pixels[2]];
         } else {
           this.style.cursor = 'auto'
-          // return d.style.display = "none";
         }
       }
     });
