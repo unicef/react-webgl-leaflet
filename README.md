@@ -6,6 +6,13 @@ Will fill this out in depth shortly. In brief, the ReactWebglLeaflet component t
 - A geojson object with an array of features of type point.
 - A url to fetch data from, where feature.properties has {id: ID of datapoint in a db, color: rgb of point} 
 
+        import ReactWebglLeaflet from 'react-webgl-leaflet'
+        import {
+        GeoJSON,
+        Map,
+        ZoomControl,
+        TileLayer
+        } from 'react-leaflet'
         <Map ref='map'
           ref={m => {
             this.leafletMap = m;
@@ -16,7 +23,7 @@ Will fill this out in depth shortly. In brief, the ReactWebglLeaflet component t
           zoomControl={false}>
           <ZoomControl position='bottomleft' />
           <TileLayer
-            url={url_to_some_mapbox_or_osm_map_thing}
+            url={}
             attribution={i_dont_remember_what_this_is}
           />
         <ReactWebglLeaflet leafletMap={this.leafletMap}
