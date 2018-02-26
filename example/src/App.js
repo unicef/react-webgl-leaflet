@@ -22,9 +22,7 @@ class App extends Component {
       zoom: 4
     }
   }
-  componentDidMount() {
 
-  }
   render() {
     const pointClick = (feature, map) => {
       map.openPopup('message', feature.geometry.coordinates.reverse())
