@@ -56,7 +56,8 @@ class App extends Component {
                           }
                       }]
     }
-    const position = [0,0]
+
+    const position = [38.913188059745586, -77.03238901390978]
 
     return (
         <Map
