@@ -5,7 +5,6 @@ import {
   ZoomControl,
   TileLayer
 } from 'react-leaflet'
-import L from 'leaflet'
 
 // import ReactWebglLeaflet from 'react-webgl-leaflet'
 class App extends Component {
