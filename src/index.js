@@ -409,6 +409,7 @@ class ReactWebglLeaflet extends MapLayer {
     this.state.gl = gl
     this.state.program = program
     this.state.leafletMap = leafletMap
+    return cl
   }
 
   componentDidMount() {}
