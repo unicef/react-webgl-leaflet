@@ -44,7 +44,7 @@ class App extends Component {
                         "coordinates": [-77.03238901390978, 38.913188059745586]
                     },
                     "properties": {
-                        "title": "Mapbox DC",
+                        "title": "Washington DC",
                         id: 2,
                         size: 5,
                         color: [92, 184, 92],
@@ -57,7 +57,7 @@ class App extends Component {
                               "coordinates": [-122.414, 37.776]
                           },
                           "properties": {
-                            "title": "Mapbox SF",
+                            "title": "San Francisco",
                             id: 3,
                             size: 3,
                             color: [92, 184, 92]
