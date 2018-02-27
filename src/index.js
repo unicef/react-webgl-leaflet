@@ -10,12 +10,6 @@ Number.prototype.map = function(in_min, in_max, out_min, out_max) {
 // Function to convert rgb to 0-1 for webgl
 const fromRgb = n => Math.ceil((parseInt(n).map(0, 255, 0, 1)) * 1000) / 1000;
 
-/*
- * decaffeinate suggestions:
- * DS101: Remove unnecessary use of Array.from
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const colorLookup = {}
 
 // Generates off screen color for data point
