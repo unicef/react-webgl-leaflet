@@ -2,9 +2,9 @@
 
 Will fill this out in depth shortly. In brief, the ReactWebglLeaflet component takes three inputs:
 
-- A reference to the map it's embedded in
+
 - A geojson object with an array of features of type point.
-- A url to fetch data from, where feature.properties has {id: ID of datapoint in a db, color: rgb of point} 
+- A callback 
 ````
     import React, { Component } from 'react';
     import ReactWebglLeaflet from 'react-webgl-leaflet'
