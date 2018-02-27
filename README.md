@@ -3,7 +3,7 @@
 This react component can technically render over 16M clickable points, thought we haven't tested that many yet.
 
 Most of the code and inspiration was taken from other places:
-- Brendan Kenny's Google Maps + HTML5 + Spatial Data Visualization
+- [Brendan Kenny's Google Maps + HTML5 + Spatial Data Visualization](https://www.youtube.com/watch?v=aZJnI6hxr-c)
 - [Pedro's tech mumblings: Displaying WebGL data on Google Maps](http://build-failed.blogspot.com/2013/02/displaying-webgl-data-on-google-maps.html)
 - [webgl polygons fill with libtess js](https://blog.sumbera.com/2014/07/28/webgl-polygons-fill-with-libtess-js/)
 - [react-leaflet-webgl](https://github.com/sniok/react-leaflet-webgl)
