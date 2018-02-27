@@ -1,6 +1,6 @@
 # react-webgl-leaflet
 
-This react component can technically render over 16M clickable points, thought we haven't tested that many yet.
+This react component can technically render over [16M clickable points](https://stackoverflow.com/questions/16830824/google-maps-using-three-js-and-webgl/27653983#27653983), thought we haven't tested that many yet.
 
 Most of the code and inspiration was taken from other places:
 - [Brendan Kenny's Google Maps + HTML5 + Spatial Data Visualization](https://www.youtube.com/watch?v=aZJnI6hxr-c)
