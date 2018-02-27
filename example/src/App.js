@@ -5,6 +5,7 @@ import {
   ZoomControl,
   TileLayer
 } from 'react-leaflet'
+const config = require('./config.js')
 
 // import ReactWebglLeaflet from 'react-webgl-leaflet'
 class App extends Component {
@@ -12,9 +13,7 @@ class App extends Component {
     super(props);
     this.state = {
       url: 'https://api.tiles.mapbox.com/v4/mapbox.dark/{z}/{x}/{y}.png?' +
-        'access_token=' +
-        'pk.eyJ1IjoiYXlhbmV6IiwiYSI6ImNqNHloOXAweTFveWwzM3A4M3FkOWUzM2UifQ.' +
-        'GfClkT4QxlFDC_xiI37x3Q',
+        'access_token=' + config.mapbox_token,
       attribution: '&copy; <a href=\'http://osm.org/copyright\'>OpenStreetMap</a>' +
         ' contributors ',
       position: [0, 0],
