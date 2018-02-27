@@ -19,7 +19,7 @@ Most of the code and inspiration was taken from other places:
       Map,
       TileLayer
     } from 'react-leaflet'
-    // import ReactWebglLeaflet from 'react-webgl-leaflet'
+    import ReactWebglLeaflet from 'react-webgl-leaflet'
 
 class App extends Component {
       constructor(props) {
