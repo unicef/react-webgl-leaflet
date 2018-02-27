@@ -17,11 +17,11 @@ Most of the code and inspiration was taken from other places:
     import ReactWebglLeaflet from 'react-webgl-leaflet'
     import {
       Map,
-      ZoomControl,
       TileLayer
     } from 'react-leaflet'
     // import ReactWebglLeaflet from 'react-webgl-leaflet'
-    class App extends Component {
+
+class App extends Component {
       constructor(props) {
         super(props);
         this.state = {
@@ -45,6 +45,7 @@ Most of the code and inspiration was taken from other places:
             )
           }, 300)
         }
+
         let geojson = {
           'type': 'FeatureCollection',
           'features': [{
@@ -74,7 +75,9 @@ Most of the code and inspiration was taken from other places:
                               }
                           }]
         }
+
         const position = [38.913188059745586, -77.03238901390978]
+
         return (
             <Map
               center={position}
