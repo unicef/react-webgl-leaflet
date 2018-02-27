@@ -9,6 +9,7 @@ Most of the code and inspiration was taken from other places:
 - [react-leaflet-webgl](https://github.com/sniok/react-leaflet-webgl)
 
 
+## The ReactWebglLeaflet component takes two inputs
 - A geojson object with an array of features of type point.
 - A callback 
 ````
