@@ -28,7 +28,39 @@ const gen_offscreen_colors = function(i) {
   const b = (i + 1) & 0xff;
   return [r, g, b];
 };
+function doMouseOrClick(ev, canvas, gl, framebuffer, leafletMap, props, this_dupe, action) {
+  if (this_dupe.className.match('leaflet-layer')) {
+    let x = undefined;
+    let y = undefined;
+    let top = 0;
+    let left = 0;
+    let obj = canvas;
+    while (obj && (obj.tagName !== "BODY")) {
+      top += obj.offsetTop;
+      left += obj.offsetLeft;
+      obj = obj.offsetParent;
+    }
+    left += window.pageXOffset;
+    top -= window.pageYOffset;
+    x = ev.clientX - left;
+    y = canvas.clientHeight - (ev.clientY - top);
+    const pixels = new Uint8Array(4);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer); // Load offscreen frame buffer for picking
+    gl.readPixels(x, y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
+    if (colorLookup[pixels[0] + " " + pixels[1] + " " + pixels[2]]) {
+      this_dupe.style.cursor = 'pointer'
+      if (action.match('click')) {
+        props.onClickCallback(colorLookup[pixels[0] + ' ' + pixels[1] + ' ' + pixels[2]], leafletMap)
+      } else {
+        this_dupe.style.cursor = 'pointer'
+      }
+    } else {
+      this_dupe.style.cursor = 'auto'
+    }
+  }
+}
 function LatLongToPixelXY(latitude, longitude) {
   var pi_180 = Math.PI / 180.0;
   var pi_4 = Math.PI * 4;
@@ -80,7 +112,7 @@ const prepare_points = function(features, zoom) {
     const pixel = LatLongToPixelXY(lat, lon);
     point_xy[i * 2] = pixel.x;
     point_xy[(i * 2) + 1] = pixel.y;
-    point_size[i] = 1.0 * (zoom / 2.5);
+    point_size[i] = (f.properties.size || 1) * (zoom / 2.5);
     // if (i%100 === 0) {
     //   console.log(f)
     // }
@@ -293,11 +325,8 @@ class ReactWebglLeaflet extends MapLayer {
       return new CanvasLayer();
     };
 
-    console.log(this.props, '**8888')
-
     let cl = L.canvasLayer()
     var glLayer = cl.delegate(this).addTo(leafletMap);
-    console.log('canvas layer', cl)
     var canvas = glLayer._canvas
     var gl = glLayer._canvas.getContext('webgl', {
       antialias: true
@@ -309,61 +338,15 @@ class ReactWebglLeaflet extends MapLayer {
     this.state.colorArrayBuffer = gl.createBuffer()
     this.state.colorArrayBufferOffScreen = gl.createBuffer()
     this.state.framebuffer = framebuffer
+
     canvas.addEventListener('click', function(ev) {
-      if (this.style.cssText) {
-        let x = undefined;
-        let y = undefined;
-        let top = 0;
-        let left = 0;
-        let obj = canvas;
-        while (obj && (obj.tagName !== "BODY")) {
-          top += obj.offsetTop;
-          left += obj.offsetLeft;
-          obj = obj.offsetParent;
-        }
-        left += window.pageXOffset;
-        top -= window.pageYOffset;
-        x = ev.clientX - left;
-        y = canvas.clientHeight - (ev.clientY - top);
-        const pixels = new Uint8Array(4);
-        gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer); // Load offscreen frame buffer for picking
-        gl.readPixels(x, y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
-        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-
-        if (colorLookup[pixels[0] + " " + pixels[1] + " " + pixels[2]]) {
-          this.style.cursor = 'pointer'
-          props.onClickCallback(colorLookup[pixels[0] + ' ' + pixels[1] + ' ' + pixels[2]], leafletMap)
-
-        }
-      }
+      let this_dupe = this
+      doMouseOrClick(ev, canvas, gl, framebuffer, leafletMap, props, this_dupe, 'click')
     });
+
     canvas.addEventListener('mousemove', function(ev) {
-      if (this.style.cssText) {
-        let x = undefined;
-        let y = undefined;
-        let top = 0;
-        let left = 0;
-        let obj = canvas;
-        while (obj && (obj.tagName !== "BODY")) {
-          top += obj.offsetTop;
-          left += obj.offsetLeft;
-          obj = obj.offsetParent;
-        }
-        left += window.pageXOffset;
-        top -= window.pageYOffset;
-        x = ev.clientX - left;
-        y = canvas.clientHeight - (ev.clientY - top);
-        const pixels = new Uint8Array(4);
-        gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer); // Load offscreen frame buffer for picking
-        gl.readPixels(x, y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
-        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-        // const d = document.getElementById('infoWindow');
-        if (colorLookup[pixels[0] + " " + pixels[1] + " " + pixels[2]]) {
-          this.style.cursor = 'pointer'
-        } else {
-          this.style.cursor = 'auto'
-        }
-      }
+      let this_dupe = this
+      doMouseOrClick(ev, canvas, gl, framebuffer, props, leafletMap, this_dupe, 'mouse')
     });
     var vshaderText = '\nattribute vec4  worldCoord;' +
       'attribute vec4  color;' +

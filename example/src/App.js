@@ -10,7 +10,6 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       url: 'https://api.tiles.mapbox.com/v4/mapbox.dark/{z}/{x}/{y}.png?' +
         'access_token=' +
@@ -25,7 +24,15 @@ class App extends Component {
 
   render() {
     const pointClick = (feature, map) => {
-      map.openPopup('message', feature.geometry.coordinates.reverse())
+      setTimeout(function() {
+        map.openPopup(feature.properties.title,
+          [
+            feature.geometry.coordinates[1],
+            feature.geometry.coordinates[0]
+          ]
+        )
+      }, 300)
+
     }
 
     let geojson = {
@@ -50,8 +57,9 @@ class App extends Component {
                               "coordinates": [-122.414, 37.776]
                           },
                           "properties": {
+                            "title": "Mapbox SF",
                             id: 3,
-                            size: 5,
+                            size: 3,
                             color: [92, 184, 92]
                           }
                       }]
@@ -71,7 +79,7 @@ class App extends Component {
           />
           <ReactWebglLeaflet
             points={geojson}
-            onClickCallback={(id, map) => pointClick(id, map)}
+            onClickCallback={pointClick}
           />
         </Map>
     )
