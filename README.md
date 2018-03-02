@@ -100,3 +100,12 @@ export default App;
 [Demo](http://school-mapping.azurewebsites.net)
 ![sample](./webgl-clickable-points.jpeg)
 
+### Caveat
+We get this pesky warning. Any advice on it appreciated:
+````
+index.js:2178 Warning: Failed context type: Invalid context `map` of type `NewClass` supplied to `ReactWebglLeaflet`, expected instance of `NewClass`.
+    in ReactWebglLeaflet (at App.js:79)
+    in div (created by Map)
+    in Map (at App.js:70)
+    in App (at index.js:7)
+````
