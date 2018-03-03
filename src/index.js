@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, {Component} from 'react';
 import L from 'leaflet'
 import { MapLayer } from 'react-leaflet'
