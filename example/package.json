@@ -7,7 +7,7 @@
     "react-dom": "^16.2.0",
     "react-leaflet": "^1.8.1",
     "react-scripts": "1.1.1",
-    "react-webgl-leaflet": "0.0.13"
+    "react-webgl-leaflet": "0.0.16"
   },
   "scripts": {
     "start": "react-scripts start",
