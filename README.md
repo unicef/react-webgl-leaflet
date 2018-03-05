@@ -8,6 +8,8 @@ Most of the code and inspiration was taken from other places:
 - [webgl polygons fill with libtess js](https://blog.sumbera.com/2014/07/28/webgl-polygons-fill-with-libtess-js/)
 - [Draw a lot of polygons fast](https://github.com/sniok/react-leaflet-webgl)
 
+[Demo](http://school-mapping.azurewebsites.net)
+![sample](./webgl-clickable-points.jpeg)
 
 ## The ReactWebglLeaflet component takes two inputs
 - A geojson object with an array of features of type point.
@@ -97,8 +99,6 @@ class App extends Component {
 }
 export default App;
 ````
-[Demo](http://school-mapping.azurewebsites.net)
-![sample](./webgl-clickable-points.jpeg)
 
 ### Caveat
 We get this pesky warning. Any advice on it appreciated:
