@@ -1,3 +1,8 @@
+
+### Deprecation notice
+
+This repository is now deprecated. It's higly recommended to use [mapbox-gl]([mapbox-gl](https://github.com/mapbox/mapbox-gl-js)) instead.
+
 # react-webgl-leaflet
 
 This react component can technically render over [16M clickable points](https://stackoverflow.com/questions/16830824/google-maps-using-three-js-and-webgl/27653983#27653983), though we haven't tested that many yet.
